@@ -24,6 +24,8 @@ public class UnitsOfLengthCollectionTest {
         collectionContains("ft");
         collectionContains("LY");
         collectionContains("A");
+        collectionContains("mm");
+        collectionContains("cm");
     }
 
     private void collectionContains(String unitSymbol){

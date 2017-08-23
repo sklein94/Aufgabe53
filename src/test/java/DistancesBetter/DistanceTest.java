@@ -30,6 +30,7 @@ public class DistanceTest {
         this.calculateDistance("1m", "1LY", "9461000000000001m");
         this.calculateDistance("1m", "1A", "1.0000000001m");
         this.calculateDistance("1m", "1mm", "1.001m");
+        this.calculateDistance("1m", "1cm", "1.01m");
     }
 
     @Test
