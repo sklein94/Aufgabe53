@@ -23,6 +23,7 @@ public class DistanceTest {
 
     @Test
     public void checkDistanceCalculatesCorrect() throws Exception{
+        //Alle Einheiten einmal
         this.calculateDistance("1m", "1m", "2m");
         this.calculateDistance("1m", "1km", "1001m");
         this.calculateDistance("1m", "1ft", "1.3048m");
@@ -31,6 +32,9 @@ public class DistanceTest {
         this.calculateDistance("1m", "1A", "1.0000000001m");
         this.calculateDistance("1m", "1mm", "1.001m");
         this.calculateDistance("1m", "1cm", "1.01m");
+
+
+        this.calculateDistance("1.111111111111111111111111111111m", "1.111111111111111111111111111111m", "2.222222222222222222222222222222m");
     }
 
     @Test
