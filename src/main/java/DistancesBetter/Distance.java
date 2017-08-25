@@ -4,12 +4,7 @@ import java.math.BigDecimal;
 import java.util.ServiceLoader;
 
 public class Distance {
-    static{
-        ServiceLoader serviceLoader = ServiceLoader.load(UnitOfLength.class);
-        for (Object unit : serviceLoader){
-
-        }
-    }
+    private ServiceLoader<UnitOfLength> services = ServiceLoader.load(UnitOfLength.class);
 
     private UnitOfLength unitOfLength;
     private BigDecimal value;
@@ -23,7 +18,7 @@ public class Distance {
         String[] splitted = this.splitArguments(distance);
         if (this.isValid(distance)){
             this.setValue(new BigDecimal(splitted[0]));
-            for (UnitOfLength temp : UnitsOfLengthCollection.unitsOfLength){
+            for (UnitOfLength temp : services){
                 if (temp.getUnit().equals(splitted[1])){
                     this.unitOfLength = temp;
                 }
@@ -85,7 +80,7 @@ public class Distance {
         }
 
         boolean ok = false;
-        for (UnitOfLength temp : UnitsOfLengthCollection.unitsOfLength) {
+        for (UnitOfLength temp : services) {
             String symbol = temp.getUnit();
             ok = ok || symbol.equals(splitted[1]);
         }
@@ -94,7 +89,7 @@ public class Distance {
 
     private String[] splitArguments(String stringToSplit) {
         String[] returnValue = new String[2];
-        for (UnitOfLength temp : UnitsOfLengthCollection.unitsOfLength) {
+        for (UnitOfLength temp : services) {
             String symbol = temp.getUnit();
             if (stringToSplit.contains(symbol)) {
                 returnValue[0] = stringToSplit.substring(0, stringToSplit.indexOf(symbol)).replace(" ", "");

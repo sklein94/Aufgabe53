@@ -14,13 +14,6 @@ public class DistanceTest {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
-    static{
-        ServiceLoader serviceLoader = ServiceLoader.load(UnitOfLength.class);
-        for (Object unit : serviceLoader){
-
-        }
-    }
-
     @Test
     public void checkDistanceCalculatesCorrect() throws Exception{
         //Alle Einheiten einmal
@@ -32,6 +25,7 @@ public class DistanceTest {
         this.calculateDistance("1m", "1A", "1.0000000001m");
         this.calculateDistance("1m", "1mm", "1.001m");
         this.calculateDistance("1m", "1cm", "1.01m");
+        this.calculateDistance("1m", "1dm", "1.1m");
 
 
         this.calculateDistance("1.111111111111111111111111111111m", "1.111111111111111111111111111111m", "2.222222222222222222222222222222m");
@@ -88,11 +82,6 @@ public class DistanceTest {
         DistancesBetter.Distance expectedResultDistance = new DistancesBetter.Distance(expectedResultDistanceString);
 
         Distance resultDistance = firstDistance.add(secondDistance);
-
-//        System.out.println(firstDistance);
-//        System.out.println(secondDistance);
-//        System.out.println(expectedResultDistance);
-//        System.out.println(resultDistance);
 
         assertTrue("\nExpected: " + expectedResultDistance.toString() + "\nActual: " + resultDistance.toString(), expectedResultDistance.equals(resultDistance));
     }
